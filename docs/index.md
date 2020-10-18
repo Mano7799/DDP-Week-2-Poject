@@ -9,21 +9,41 @@ Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://j
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
 ```markdown
-Syntax highlighted code block
+---
+title: "Developing Data Products Week-2 Project"
+author: "Mano"
+date: "18/10/2020"
+output: html_document
+---
 
-# Header 1
-## Header 2
-### Header 3
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+The source code is available at [GitHub](https://github.com/Mano7799/DDP-Week-2-Poject). [Just click here!](https://github.com/Mano7799/DDP-Week-2-Poject)
 
-- Bulleted
-- List
+## My First Leaflet Map
+Creating a Map object of leaflet .
+```{r, warning=FALSE}
+library(leaflet)
+MyMap <- leaflet() %>% addTiles()
+```
 
-1. Numbered
-2. List
+Create a marker with a picture of Benrath Palace and a link to its homepage.
+```{r}
+benrathPalaceIcon <- makeIcon(
+   iconUrl = "http://www.schloss-benrath.de/fileadmin/_processed_/csm_corps-de-logis-blumen_2e04b2b859.jpg",
+   iconWidth = 30*408/255, iconHeight = 30,
+   iconAnchorX = 30*408/255/2, iconAnchorY = 30/2
+)
+```
 
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+Add the marker to the map and display the map.
+```{r}
+Charminar <- c("<a href= 'https://telanganatourism.gov.in/' >Charminar<br><img src='shorturl.at/akWZ8' width='210' height='132'  alt='Charmin' title='Charminar'></a>")
+MyMap %>%
+   addTiles() %>%
+   addMarkers(lat=17.3616, lng=78.4747, popup = Charminar)
+```
 ```
 
 For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
